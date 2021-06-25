@@ -1,0 +1,7 @@
+{
+  "/api": {
+    "target": "https://www.metaweather.com",
+    "secure": true,
+    "changeOrigin": true
+  }
+}

@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import {LocationService} from "../../services/locationService/location-service.service";
+import {Component, OnInit} from '@angular/core';
+import { City } from 'src/app/model/city';
+import {WeatherService} from "../../services/weatherService/weather.service";
 
 @Component({
   selector: 'app-current-weather',
@@ -8,10 +9,24 @@ import {LocationService} from "../../services/locationService/location-service.s
 })
 export class CurrentWeatherComponent implements OnInit {
 
-  constructor(public locationService: LocationService) {}
+  public cities: City[] = [];
+  resultByPosition: any;
+
+  constructor(public weatherService: WeatherService) {
+  }
 
   ngOnInit(): void {
-    this.locationService.getCurrentLocation(); // Get position when component load.
+    // Get position and search nearest cities.
+    navigator.geolocation.getCurrentPosition(position => {
+      this.weatherService.searchNearCities(position.coords.latitude, position.coords.longitude).subscribe(result => {
+        this.resultByPosition = result;
+      });
+    });
+
+    this.weatherService.searchCityByName("London")
+      .subscribe(result => {
+        this.cities = result;
+      })
   }
 
 }
