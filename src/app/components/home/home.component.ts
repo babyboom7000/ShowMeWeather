@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {ProgressBarService} from "../../services/progressBarService/progress-bar.service";
 
 @Component({
   selector: 'app-home',
@@ -7,9 +8,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
-  constructor() { }
+  progressBarShow: boolean = true;
+
+  constructor(private progressBarService: ProgressBarService) { }
 
   ngOnInit(): void {
+    this.progressBarService.currentProgressBar.subscribe(value => {
+      this.progressBarShow = value;
+    })
   }
 
 }

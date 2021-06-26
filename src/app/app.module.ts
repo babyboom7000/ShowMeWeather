@@ -15,6 +15,7 @@ import { HomeComponent } from './components/home/home.component';
 import {MatInputModule} from "@angular/material/input";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {MatAutocompleteModule} from "@angular/material/autocomplete";
+import {MatProgressBarModule} from "@angular/material/progress-bar";
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import {MatAutocompleteModule} from "@angular/material/autocomplete";
     MatInputModule,
     ReactiveFormsModule,
     MatAutocompleteModule,
-    FormsModule
+    FormsModule,
+    MatProgressBarModule
   ],
   providers: [],
   bootstrap: [AppComponent]

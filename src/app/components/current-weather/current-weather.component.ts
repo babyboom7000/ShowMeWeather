@@ -3,6 +3,7 @@ import {City} from 'src/app/model/city';
 import {WeatherService} from "../../services/weatherService/weather.service";
 import {Weather} from "../../model/weather/Weather";
 import {Tools} from "../../tools/Tools";
+import {ProgressBarService} from "../../services/progressBarService/progress-bar.service";
 
 @Component({
   selector: 'app-current-weather',
@@ -21,10 +22,12 @@ export class CurrentWeatherComponent implements OnInit {
   // Weather status
   weatherIconUrl: string = "https://www.metaweather.com/static/img/weather/c.svg";
 
-  constructor(public weatherService: WeatherService) {
+  constructor(public weatherService: WeatherService,
+              private progressBarService: ProgressBarService) {
   }
 
   ngOnInit(): void {
+    this.progressBarService.changeProgressBar(true);
     // Get position and search nearest cities.
     navigator.geolocation.getCurrentPosition(position => {                                                                          // Get position.
       this.yourPosition = [position.coords.latitude, position.coords.longitude];                                                                // Store client position.
@@ -35,6 +38,7 @@ export class CurrentWeatherComponent implements OnInit {
           this.nearWeather[0] = value;                                                                                                          // Get Weather.
           this.currentTemperature = this.nearWeather[0].consolidated_weather[0].the_temp;
           this.weatherIconUrl = Tools.resolveWeatherIcon(this.nearWeather);
+          this.progressBarService.changeProgressBar(false);
           // this.averageTemperature = Tools.calculateAverageTemperature(this.nearWeather)                                                      // I make mistake, array of days aha.
         });
       });
