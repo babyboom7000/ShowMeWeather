@@ -11,12 +11,11 @@ import {Weather} from "../../model/weather/Weather";
 export class CurrentWeatherComponent implements OnInit {
 
   public yourPosition: number[] = []
-
   public cities: City[] = [];
   resultByPosition: City[] = [];
   mostNearCityName: string = "";
-  mostNearCityWeatherJSON: string = "";
   nearWeather: Weather[] = [];
+  averageWeather: string = "";
 
   constructor(public weatherService: WeatherService) {
   }
@@ -27,11 +26,10 @@ export class CurrentWeatherComponent implements OnInit {
       this.yourPosition = [position.coords.latitude, position.coords.longitude];                                                                // Store client position.
       this.weatherService.searchNearCities(position.coords.latitude, position.coords.longitude).subscribe(result => {
         this.resultByPosition = result;                                                                                                         // find near cities around your position.
-        this.mostNearCityName = this.findCityNameByDistance(this.findNearCity(this.getDistancesOnly(result)), result); // Find nearest city.
+        this.mostNearCityName = this.findCityNameByDistance(this.findNearCity(this.getDistancesOnly(result)), result);                          // Find nearest city.
         this.weatherService.searchWeatherByCityWoeid(this.findCityWoeidByName(this.mostNearCityName, result)).subscribe(value => {
-          // this.mostNearCityWeatherJSON = value;
-          this.nearWeather[0] = value;
-          console.log(this.nearWeather);
+          this.nearWeather[0] = value;                                                                                                          // Get Weather.
+          this.averageWeather = this.calculateAverageTemperature(this.nearWeather)
         });
       });
     });
@@ -79,6 +77,16 @@ export class CurrentWeatherComponent implements OnInit {
       }
     }
     return 0;
+  }
+
+  calculateAverageTemperature(weather: Weather[]): string {
+    let temperatures: number[] = [];
+    for (let t of weather[0].consolidated_weather) {
+      temperatures.push(t.the_temp);
+    }
+
+    const sum = temperatures.reduce((a, b) => a + b, 0);
+    return ((sum / temperatures.length) || 0).toFixed(2);
   }
 
 }
