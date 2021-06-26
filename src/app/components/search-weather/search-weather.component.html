@@ -1,9 +1,27 @@
-<form class="example-form">
-  <mat-form-field class="example-full-width" appearance="fill">
-    <mat-label>City</mat-label>
-    <input [(ngModel)]="cityFromUser" name="cityNameFromUser" matInput type="text" placeholder="Vienna">
-  </mat-form-field>
-  <button mat-button (click)="searchCity()" color="primary">Find</button>
-</form>
-{{result}}
-
+<div id="findWeather">
+  <div class="d-flex justify-content-center">
+    <form class="example-form">
+      <mat-form-field class="example-full-width" appearance="fill" id="cityNameFromUserInput">
+        <mat-label>City</mat-label>
+        <input [(ngModel)]="cityFromUser" name="cityNameFromUser" matInput [formControl]="userCitySearchFormControl" [matAutocomplete]="auto" type="text" placeholder="Vienna">
+        <mat-autocomplete #auto="matAutocomplete">
+          <mat-option *ngFor="let option of options" [value]="option">
+            {{option}}
+          </mat-option>
+        </mat-autocomplete>
+        <!--<mat-hint>London, Prague, Paris..</mat-hint>-->
+        <mat-error *ngIf="userCitySearchFormControl.hasError('required')">
+          City is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+      <button mat-button (click)="searchCity()" color="primary" style="margin-left: 20px">Find</button>
+    </form>
+  </div>
+  <div *ngIf="this.result" id="currentAverageTemperatureDiv">
+    <div class="d-flex justify-content-center">
+      <img [src]="weatherIconUrl" width="180" height="180" style="padding-bottom: 60px">
+      <div id="currentAverageTemperature">{{this.result.toFixed(0)}}<span>°C</span>
+      </div>
+    </div>
+  </div>
+</div>

@@ -16,7 +16,10 @@ export class CurrentWeatherComponent implements OnInit {
   resultByPosition: City[] = [];
   mostNearCityName: string = "";
   nearWeather: Weather[] = [];
-  averageWeather: string = "";
+  currentTemperature: number = 0;
+
+  // Weather status
+  weatherIconUrl: string = "https://www.metaweather.com/static/img/weather/c.svg";
 
   constructor(public weatherService: WeatherService) {
   }
@@ -30,7 +33,9 @@ export class CurrentWeatherComponent implements OnInit {
         this.mostNearCityName = this.findCityNameByDistance(this.findNearCity(this.getDistancesOnly(result)), result);                          // Find nearest city.
         this.weatherService.searchWeatherByCityWoeid(this.findCityWoeidByName(this.mostNearCityName, result)).subscribe(value => {
           this.nearWeather[0] = value;                                                                                                          // Get Weather.
-          this.averageWeather = Tools.calculateAverageTemperature(this.nearWeather)
+          this.currentTemperature = this.nearWeather[0].consolidated_weather[0].the_temp;
+          this.weatherIconUrl = Tools.resolveWeatherIcon(this.nearWeather);
+          // this.averageTemperature = Tools.calculateAverageTemperature(this.nearWeather)                                                      // I make mistake, array of days aha.
         });
       });
     });

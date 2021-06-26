@@ -1,35 +1,12 @@
 <div id="currentWeather">
   <div class="row">
-    <div class="col-md-2"></div>
-    <div class="col-md-8">
+    <div class="col-md-3"></div>
+    <div class="col-md-5">
+      <img [src]="weatherIconUrl" width="160" height="160">
       <p>Current Average Temperature for <span id="cityName">{{mostNearCityName}}</span></p>
-      <div id="currentAverageTemperature">{{this.averageWeather}} °C</div>
+      <div id="currentAverageTemperature">{{this.currentTemperature.toFixed(0)}}<span>°C</span>
+      </div>
     </div>
-    <div class="col-md-2"></div>
+    <div class="col-md-4"></div>
   </div>
-
-
-  <!--<h2>Cities near you:</h2>
-  <p *ngFor="let city of resultByPosition">{{city.title}} {{city.woeid}}</p>
-  <h2>Chose city</h2>-->
-
-
-  <!--<h2>Your position: </h2>
-  <p>Latitude: {{yourPosition[0]}}</p>
-  <p>Longitude: {{yourPosition[1]}}</p>
-  <p *ngFor="let city of cities">{{city.title}} {{city.woeid}}</p>
-  <h2>Nearest city: </h2>
-  <p>{{mostNearCityName}}</p>
-  <h2>Nearest city weather: </h2>
-  <p>{{this.averageWeather}} °C</p>-->
-
-
-  <!--<mat-form-field appearance="fill">
-    <mat-label>Favorite food</mat-label>
-    <mat-select>
-      <mat-option *ngFor="let food of foods" [value]="food.value">
-        {{food.viewValue}}
-      </mat-option>
-    </mat-select>
-  </mat-form-field>-->
-  <!--<button mat-button>Refresh</button>-->
+</div>

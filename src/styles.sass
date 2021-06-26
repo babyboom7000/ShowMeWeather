@@ -10,7 +10,7 @@
 
 body
   background: rgb(41, 130, 161)
-  background: linear-gradient(356deg, rgb(103, 182, 215) 0%, rgb(176, 225, 252) 100%)
+  background: linear-gradient(349deg, rgb(113, 202, 248) 0%, rgb(186, 223, 253) 80%)
 
 .row
   padding: 0
@@ -18,5 +18,20 @@ body
 
 .mat-tab-labels
   justify-content: center
+
+.mat-form-field-underline
+  position: absolute
+  width: 0 !important
+  pointer-events: none
+  transform: scale3d(1, 1.0001, 1)
+
+.mat-autocomplete-panel
+  background: rgba(0,0,0,.1) !important
+  color: rgba(0,0,0,.87)
+
+.mat-autocomplete-panel .mat-option.mat-selected:not(.mat-active):not(:hover)
+  background: rgba(0,0,0,.1)
+
+
 
 
