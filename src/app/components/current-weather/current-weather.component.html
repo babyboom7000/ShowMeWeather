@@ -1,3 +1,12 @@
-<p>Cities near you:<br>{{resultByPosition | json}}</p>
+<!--<h2>Cities near you:</h2>
+<p *ngFor="let city of resultByPosition">{{city.title}} {{city.woeid}}</p>
+<h2>Chose city</h2>-->
+<h2>Your position: </h2>
+<p>Latitude: {{yourPosition[0]}}</p>
+<p>Longitude: {{yourPosition[1]}}</p>
 <p *ngFor="let city of cities">{{city.title}} {{city.woeid}}</p>
+<h2>Nearest city: </h2>
+<p>{{mostNearCityName}}</p>
+<h2>Nearest city weather: </h2>
+<p>{{mostNearCityWeatherJSON | json}}</p>
 <!--<button mat-button>Refresh</button>-->
