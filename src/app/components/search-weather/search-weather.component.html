@@ -1,0 +1,9 @@
+<form class="example-form">
+  <mat-form-field class="example-full-width" appearance="fill">
+    <mat-label>City</mat-label>
+    <input [(ngModel)]="cityFromUser" name="cityNameFromUser" matInput type="text" placeholder="Vienna">
+  </mat-form-field>
+  <button mat-button (click)="searchCity()" color="primary">Find</button>
+</form>
+{{result}}
+

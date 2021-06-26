@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {City} from 'src/app/model/city';
 import {WeatherService} from "../../services/weatherService/weather.service";
 import {Weather} from "../../model/weather/Weather";
+import {Tools} from "../../tools/Tools";
 
 @Component({
   selector: 'app-current-weather',
@@ -10,6 +11,7 @@ import {Weather} from "../../model/weather/Weather";
 })
 export class CurrentWeatherComponent implements OnInit {
 
+  // Get average weather fields.
   public yourPosition: number[] = []
   public cities: City[] = [];
   resultByPosition: City[] = [];
@@ -29,15 +31,10 @@ export class CurrentWeatherComponent implements OnInit {
         this.mostNearCityName = this.findCityNameByDistance(this.findNearCity(this.getDistancesOnly(result)), result);                          // Find nearest city.
         this.weatherService.searchWeatherByCityWoeid(this.findCityWoeidByName(this.mostNearCityName, result)).subscribe(value => {
           this.nearWeather[0] = value;                                                                                                          // Get Weather.
-          this.averageWeather = this.calculateAverageTemperature(this.nearWeather)
+          this.averageWeather = Tools.calculateAverageTemperature(this.nearWeather)
         });
       });
     });
-
-    /*this.weatherService.searchCityByName("London")
-      .subscribe(result => {
-        this.cities = result;
-      })*/
   }
 
   /**
@@ -77,16 +74,6 @@ export class CurrentWeatherComponent implements OnInit {
       }
     }
     return 0;
-  }
-
-  calculateAverageTemperature(weather: Weather[]): string {
-    let temperatures: number[] = [];
-    for (let t of weather[0].consolidated_weather) {
-      temperatures.push(t.the_temp);
-    }
-
-    const sum = temperatures.reduce((a, b) => a + b, 0);
-    return ((sum / temperatures.length) || 0).toFixed(2);
   }
 
 }
