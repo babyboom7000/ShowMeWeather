@@ -13,7 +13,6 @@ export class CurrentWeatherComponent implements OnInit {
 
   // Get average weather fields.
   public yourPosition: number[] = []
-  public cities: City[] = [];
   resultByPosition: City[] = [];
   mostNearCityName: string = "";
   nearWeather: Weather[] = [];
