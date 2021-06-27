@@ -26,14 +26,21 @@ body
   transform: scale3d(1, 1.0001, 1)
 
 .mat-autocomplete-panel
-  background: rgba(0,0,0,.1) !important
-  color: rgba(0,0,0,.87)
+  background: rgba(0, 0, 0, .1) !important
+  color: rgba(0, 0, 0, .87)
 
 .mat-autocomplete-panel .mat-option.mat-selected:not(.mat-active):not(:hover)
-  background: rgba(0,0,0,.1)
+  background: rgba(0, 0, 0, .1)
 
+// Remove scroll at all.
 ::-webkit-scrollbar
   display: none
+
+.mat-table
+  width: 100%
+  margin-top: 10vh
+  background: transparent !important
+
 
 
 

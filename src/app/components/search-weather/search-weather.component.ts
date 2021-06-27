@@ -25,21 +25,20 @@ export class SearchWeatherComponent implements OnInit {
   public weatherByUserSearch: Weather[] = [];
   public result: number = 0;
   weatherIconUrl: string = "https://www.metaweather.com/static/img/weather/c.svg";
-  options: string[] = ["Vienna", "Prague", "London", "Munich"]; // TODO: Fill real values from backend.
 
-  progressBarShow = false;
+  history: string[] = [];
 
   constructor(public weatherService: WeatherService,
               private progressBarService: ProgressBarService) { }
 
   ngOnInit(): void {
     this.progressBarService.changeProgressBar(true);
+    this.history = JSON.parse(<string>localStorage.getItem("citiesHistory"));
   }
 
   userCitySearchFormControl = new FormControl('', [
     Validators.required
   ]);
-
   matcher = new MyErrorStateMatcher();
 
   /**
@@ -53,7 +52,13 @@ export class SearchWeatherComponent implements OnInit {
         this.result = this.weatherByUserSearch[0].consolidated_weather[0].the_temp;
         this.weatherIconUrl = Tools.resolveWeatherIcon(this.weatherByUserSearch);
         this.progressBarService.changeProgressBar(false);
-        // this.result = Tools.calculateAverageTemperature(this.weatherByUserSearch); // Mistake.
+
+        // History.
+        if(this.history === null) {
+          this.history = [];
+        }
+        this.history.push(this.weatherByUserSearch[0].title);
+        localStorage.setItem("citiesHistory", JSON.stringify(this.history));
       });
     });
   }

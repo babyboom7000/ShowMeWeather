@@ -9,20 +9,25 @@ import {HttpClientModule} from "@angular/common/http";
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatSelectModule} from "@angular/material/select";
 import {MatOptionModule} from "@angular/material/core";
-import { SearchWeatherComponent } from './components/search-weather/search-weather.component';
+import {SearchWeatherComponent} from './components/search-weather/search-weather.component';
 import {MatTabsModule} from "@angular/material/tabs";
-import { HomeComponent } from './components/home/home.component';
+import {HomeComponent} from './components/home/home.component';
 import {MatInputModule} from "@angular/material/input";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {MatAutocompleteModule} from "@angular/material/autocomplete";
 import {MatProgressBarModule} from "@angular/material/progress-bar";
+import {SearchHistoryComponent} from './components/search-history/search-history.component';
+import {MatTableModule} from "@angular/material/table";
+import {ForecastComponent} from './components/forecast/forecast.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     CurrentWeatherComponent,
     SearchWeatherComponent,
-    HomeComponent
+    HomeComponent,
+    SearchHistoryComponent,
+    ForecastComponent
   ],
   imports: [
     BrowserModule,
@@ -37,7 +42,8 @@ import {MatProgressBarModule} from "@angular/material/progress-bar";
     ReactiveFormsModule,
     MatAutocompleteModule,
     FormsModule,
-    MatProgressBarModule
+    MatProgressBarModule,
+    MatTableModule
   ],
   providers: [],
   bootstrap: [AppComponent]

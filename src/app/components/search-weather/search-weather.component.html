@@ -8,11 +8,12 @@
                [matAutocomplete]="auto"
                [errorStateMatcher]="matcher" >
         <mat-autocomplete #auto="matAutocomplete">
-          <mat-option *ngFor="let option of options" [value]="option">
+          <mat-option *ngFor="let option of history" [value]="option">
             {{option}}
           </mat-option>
         </mat-autocomplete>
-        <mat-hint>Type or select city</mat-hint>
+        <mat-hint *ngIf="history == null || history.length < 3">Vienna, Prague, Berlin, Moscow..</mat-hint>
+        <mat-hint *ngIf="history && history.length >= 3">Type or select city from your history</mat-hint>
         <mat-error *ngIf="userCitySearchFormControl.hasError('required')">
           City is <strong>required</strong>
         </mat-error>
@@ -23,7 +24,7 @@
   <div *ngIf="this.result" id="currentAverageTemperatureDiv">
     <div class="d-flex justify-content-center">
       <img [src]="weatherIconUrl" width="180" height="180" style="padding-bottom: 60px">
-      <div id="currentAverageTemperature">{{this.result.toFixed(0)}}<span>°C</span>
+      <div id="currentAverageTemperature">{{this.result.toFixed(1)}}<span>°C</span>
       </div>
     </div>
   </div>
