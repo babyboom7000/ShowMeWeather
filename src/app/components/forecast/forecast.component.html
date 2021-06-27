@@ -1,1 +1,29 @@
-<p>forecast works!</p>
+<div *ngIf="weather[0]" class="d-flex justify-content-center">
+  <div style="width: 100%">
+    <p>Forecast</p>
+    <hr>
+    <div class="row">
+      <div class="col-3">
+        <!-- TODO: Make calendar great again -->
+        <span style="font-size: x-small">Tomorrow</span><br>
+        Max <b>{{weather[0].consolidated_weather[1].max_temp.toFixed(0)}}</b> °C<br>
+        Min <b>{{weather[0].consolidated_weather[1].min_temp.toFixed(0)}}</b> °C
+      </div>
+      <div class="col-3">
+        <span style="font-size: x-small">{{(date.getDate() + 2)}}</span><br>
+        Max <b>{{weather[0].consolidated_weather[2].max_temp.toFixed(0)}}</b> °C<br>
+        Min <b>{{weather[0].consolidated_weather[2].min_temp.toFixed(0)}}</b> °C
+      </div>
+      <div class="col-3">
+        <span style="font-size: x-small">{{(date.getDate() + 3)}}</span><br>
+        Max <b>{{weather[0].consolidated_weather[3].max_temp.toFixed(0)}}</b> °C<br>
+        Min <b>{{weather[0].consolidated_weather[3].min_temp.toFixed(0)}}</b> °C
+      </div>
+      <div class="col-3">
+        <span style="font-size: x-small">{{(date.getDate() + 4)}}</span><br>
+        Max <b>{{weather[0].consolidated_weather[4].max_temp.toFixed(0)}}</b> °C<br>
+        Min <b>{{weather[0].consolidated_weather[4].min_temp.toFixed(0)}}</b> °C
+      </div>
+    </div>
+  </div>
+</div>

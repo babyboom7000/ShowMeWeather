@@ -36,6 +36,7 @@ export class SearchWeatherComponent implements OnInit {
     this.history = JSON.parse(<string>localStorage.getItem("citiesHistory"));
   }
 
+  // Validator for search city.
   userCitySearchFormControl = new FormControl('', [
     Validators.required
   ]);
