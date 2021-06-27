@@ -1,4 +1,5 @@
 # ShowMeWeather
+Simple nice weather showcase application.
 
 ## Project Start
 1. Start project from project folder: <b>ng serve --proxy-config proxy.conf.json</b><br>
