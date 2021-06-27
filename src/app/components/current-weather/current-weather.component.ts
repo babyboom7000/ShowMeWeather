@@ -40,9 +40,9 @@ export class CurrentWeatherComponent implements OnInit {
           this.weatherIconUrl = Tools.resolveWeatherIcon(this.nearWeather);
           this.progressBarService.changeProgressBar(false);
           // this.averageTemperature = Tools.calculateAverageTemperature(this.nearWeather)                                                      // I make mistake, array of days aha.
-        });
-      });
-    });
+        }, error => {});
+      }, error => {});
+    }, error => {});
   }
 
   /**

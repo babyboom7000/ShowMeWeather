@@ -47,21 +47,21 @@ export class SearchWeatherComponent implements OnInit {
    */
   public searchCity() {
     this.progressBarService.changeProgressBar(true);
+
     this.weatherService.searchCityByName(this.cityFromUser).subscribe(r => {
       this.weatherService.searchWeatherByCityWoeid(r[0].woeid).subscribe(value => {
         this.weatherByUserSearch[0] = value;
         this.result = this.weatherByUserSearch[0].consolidated_weather[0].the_temp;
         this.weatherIconUrl = Tools.resolveWeatherIcon(this.weatherByUserSearch);
         this.progressBarService.changeProgressBar(false);
-
         // History.
         if(this.history === null) {
           this.history = [];
         }
         this.history.push(this.weatherByUserSearch[0].title);
         localStorage.setItem("citiesHistory", JSON.stringify(this.history));
-      });
-    });
+      }, error => {});
+    }, error => {});
   }
 
 }
