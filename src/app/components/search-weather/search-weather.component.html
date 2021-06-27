@@ -21,11 +21,18 @@
       <button mat-button (click)="searchCity()" color="primary" style="margin-left: 20px">Find</button>
     </form>
   </div>
-  <div *ngIf="this.result" id="currentAverageTemperatureDiv">
+  <div *ngIf="this.result" id="currentAverageTemperatureDiv" style="padding-top: 12vh">
     <div class="d-flex justify-content-center">
       <img [src]="weatherIconUrl" width="180" height="180" style="padding-bottom: 60px">
       <div id="currentAverageTemperature">{{this.result.toFixed(1)}}<span>°C</span>
       </div>
     </div>
+  </div>
+  <div class="row" style="padding-top: 8vh">
+    <div class="col-md-3"></div>
+    <div class="col-md-6">
+      <app-forecast [weather]="weatherByUserSearch"></app-forecast>
+    </div>
+    <div class="col-md-3"></div>
   </div>
 </div>
