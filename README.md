@@ -1,5 +1,9 @@
 # ShowMeWeather
 
+## Project Start
+1. Start project from project folder: <b>ng serve --proxy-config proxy.conf.json</b><br>
+Node.js (14.17.1) must be installed.
+
 ## Project notes
 • Build optional argument: --style=sass
 
