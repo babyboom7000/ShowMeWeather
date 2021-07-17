@@ -11,7 +11,7 @@ export class ForecastComponent implements OnInit {
   date: Date = new Date(Date.now());
 
   @Input()
-  weather: Weather[] = [];
+  weather: Weather | undefined;
 
   constructor() { }
 

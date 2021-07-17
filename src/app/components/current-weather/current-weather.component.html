@@ -2,7 +2,7 @@
   <div class="row">
     <div class="col-md-3"></div>
     <div class="col-md-5">
-      <img [src]="weatherIconUrl" width="160" height="160">
+      <img [src]="weatherIconSunnyUrl" width="160" height="160">
       <p>Current Temperature for <span id="cityName">{{mostNearCityName}}</span></p>
       <div id="currentAverageTemperature">{{this.currentTemperature.toFixed(1)}}<span>°C</span>
       </div>
@@ -11,9 +11,9 @@
     <div class="row" style="padding-top: 16vh">
       <div class="col-md-3"></div>
       <div class="col-md-6">
-        <app-forecast [weather]="nearWeather" ></app-forecast>
+        <app-forecast [weather]="nearCityWeather"></app-forecast>
       </div>
-        <div class="col-md-3"></div>
+      <div class="col-md-3"></div>
     </div>
   </div>
 </div>
